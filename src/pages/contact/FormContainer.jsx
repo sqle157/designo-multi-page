@@ -74,12 +74,14 @@ function FormContainer() {
 		resetErrorMsg();
 		validateFields();
 		if (
-			nameErrorMsg === '' &&
-			textErrorMsg === '' &&
-			phoneErrorMsg === '' &&
-			emailErrorMsg === ''
+			nameErrorMsg !== '' &&
+			textErrorMsg !== '' &&
+			phoneErrorMsg !== '' &&
+			emailErrorMsg !== ''
 		) {
-			toast.success('Your message has been received! We will contact you as soon as possible');
+			toast.success(
+				'Your message has been received! We will contact you as soon as possible'
+			);
 			resetFields();
 		}
 	};
@@ -89,9 +91,10 @@ function FormContainer() {
 			<div className='form__intro'>
 				<h1>Contact Us</h1>
 				<p className='text-white'>
-					Ready to take it to the next level? Let’s talk about your project or idea and find
-					out how we can help your business grow. If you are looking for unique digital
-					experiences that’s relatable to your users, drop us a line.
+					Ready to take it to the next level? Let’s talk about your project or
+					idea and find out how we can help your business grow. If you are
+					looking for unique digital experiences that’s relatable to your users,
+					drop us a line.
 				</p>
 			</div>
 			<form onSubmit={handleSubmit} className='contact-form flex'>
