@@ -1,0 +1,95 @@
+/* --------------------------- Navbar CSS ------------------------ */
+.primary-header {
+	height: 24px;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.logo {
+	width: 196px;
+}
+
+.navbar {
+	--gap: 2.625rem;
+	align-items: center;
+}
+
+.navbar__link {
+	font-size: var(--fs-200);
+	text-transform: uppercase;
+	font-weight: var(--fw-400);
+	color: hsl(var(--clr-secondary-grey-700));
+	line-height: 1;
+	letter-spacing: 2px;
+}
+
+.navbar__link:is(:hover, :focus) {
+	text-decoration: underline;
+}
+
+.menu {
+	display: none;
+	width: 24px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.menu-open {
+	background-image: url('../../assets/shared/mobile/icon-hamburger.svg');
+}
+
+.menu-close {
+	background-image: url('../../assets/shared/mobile/icon-close.svg');
+}
+
+/* --------------------------- Media Queries ------------------------ */
+/* Mobile */
+@media (max-width: 45em) {
+	.primary-header {
+		margin-block: 2.25rem;
+	}
+
+	#header-nav .navbar {
+		--gap: 2rem;
+		position: absolute;
+		top: 3.75rem;
+		left: 0;
+		flex-direction: column;
+		align-items: flex-start;
+		width: 100%;
+		padding: 3rem 1.5rem;
+		margin: 0;
+		background-color: hsl(var(--clr-primary-black));
+		z-index: 100;
+	}
+
+	#header-nav .mobile-open {
+		display: flex;
+	}
+
+	#header-nav .mobile-close {
+		display: none;
+	}
+
+	#header-nav .overlay::before {
+		content: '';
+		position: absolute;
+		top: 14.6875rem;
+		left: 0;
+		width: 100%;
+		height: 100vh;
+		background-color: hsl(var(--clr-primary-black), 0.5);
+		z-index: 100;
+	}
+
+	#header-nav .navbar .navbar__link {
+		color: hsl(var(--clr-primary-white));
+		font-size: 1.5rem;
+		line-height: 25px;
+	}
+
+	.menu {
+		display: block;
+	}
+}

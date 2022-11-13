@@ -1,0 +1,30 @@
+.btn {
+	cursor: pointer;
+	padding: 1.0625rem 1.1535rem;
+	font-size: var(--fs-300);
+	font-weight: var(--fw-500);
+	line-height: 22px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	border-radius: 0.5rem;
+	border: none;
+}
+
+.btn-white {
+	background-color: hsl(var(--clr-primary-white));
+	color: hsl(var(--clr-secondary-grey-700));
+}
+
+.btn-white:is(:hover, :focus) {
+	background-color: hsl(var(--clr-primary-white), 0.5);
+	color: hsl(var(--clr-primary-white));
+}
+
+.btn-primary {
+	background-color: hsl(var(--clr-primary-peach));
+	color: hsl(var(--clr-primary-white));
+}
+
+.btn-primary:is(:hover, :focus) {
+	background-color: hsl(var(--clr-primary-peach), 0.5);
+}

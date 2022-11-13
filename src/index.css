@@ -1,13 +1,258 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500&display=swap');
+
+:root {
+	/* Primary Colors */
+	--clr-primary-peach: 11, 73%, 66%;
+	--clr-primary-black: 270, 3%, 11%;
+	--clr-primary-white: 0, 0%, 100%;
+
+	/* Secondary Colors */
+	--clr-secondary-peach-300: 11, 100%, 80%;
+	--clr-secondary-grey-700: 264, 5%, 20%;
+	--clr-secondary-grey-300: 210, 17%, 95%;
+
+	/* Font-family */
+	--ff: 'Jost', sans-serif;
+
+	/* Font weights */
+	--fw-400: 400;
+	--fw-500: 500;
+
+	/* Font sizes */
+	--fs-900: 3rem;
+	--fs-700: 2.5rem;
+	--fs-500: 1.25rem;
+	--fs-400: 1rem;
+	--fs-300: 0.9375rem;
+	--fs-200: 0.875rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@media (max-width: 45em) {
+	:root {
+		--fs-900: 2rem;
+		--fs-700: 1.75rem;
+	}
+}
+
+/* ------------- Reset CSS --------------- */
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* Remove default margin */
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul,
+ol {
+	list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+	scroll-behavior: smooth;
+}
+
+/* Set core body defaults */
+body {
+	min-height: 100vh;
+	text-rendering: optimizeSpeed;
+	line-height: 1.5;
+}
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+	text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+	max-width: 100%;
+	display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+	html:focus-within {
+		scroll-behavior: auto;
+	}
+
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
+
+/* ------------- Utilities Classes --------------- */
+:where(.primary-container, .secondary-container) {
+	width: min(100% - 5rem, 1111px);
+	margin-inline: auto;
+}
+
+.secondary-container {
+	margin-block: 4rem;
+}
+
+@media (max-width: 45em) {
+	.primary-container {
+		width: 100%;
+	}
+
+	.secondary-container {
+		width: calc(100% - 1.5rem);
+	}
+}
+
+.flex {
+	display: flex;
+	gap: var(--gap, 1rem);
+}
+
+.grid {
+	display: grid;
+	gap: var(--gap, 1rem);
+}
+
+.text-primary-peach {
+	color: hsl(var(--clr-primary-peach));
+}
+
+.text-white {
+	color: hsl(var(--clr-primary-white));
+}
+
+.py-1 {
+	padding-block: 4.5rem !important;
+}
+
+/* ----------------------- Body CSS -------------------------- */
+body {
+	--backgroundUrl: url('./assets/shared/desktop/bg-pattern-leaf.svg');
+	--rotate: -180deg;
+	--secondBackgroundPosition: left top 28.25rem;
+	--backgroundPosition: top 29.6875rem right 27.125rem;
+	font-family: var(--ff);
+	background-image: var(--backgroundUrl);
+	background-repeat: no-repeat;
+	background-position: var(--backgroundPosition);
+	position: relative;
+	overflow-x: hidden;
+}
+
+body::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	background-image: var(--backgroundUrl);
+	background-repeat: no-repeat;
+	background-position: var(--secondBackgroundPosition);
+	transform: rotate(var(--rotate));
+	z-index: -1;
+}
+
+/* Custom Body Background For Different Route */
+body.design-route {
+	--backgroundPosition: top 17.5625rem right 27.125rem;
+}
+
+body.design-route::before {
+	--backgroundUrl: none;
+}
+
+body.about-route::before {
+	--rotate: 0deg;
+	--secondBackgroundPosition: right -25rem top 107.0625rem;
+}
+
+body.location-route {
+	--backgroundUrl: none;
+}
+
+body.contact-route {
+	--backgroundUrl: none;
+}
+
+body.contact-route::before {
+	--backgroundUrl: url('./assets/shared/desktop/bg-pattern-leaf.svg');
+	--rotate: 0deg;
+	--secondBackgroundPosition: right top 51rem;
+}
+
+body.error {
+	--backgroundUrl: none;
+}
+
+/* Media Query */
+@media (max-width: 60em) {
+	body,
+	body::before {
+		background: none;
+	}
+}
+
+/* ----------------------- Other Tag CSS -------------------------- */
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	font-size: var(--fs-900);
+	font-weight: var(--fw-500);
+	line-height: 1;
+	color: hsl(var(--clr-primary-white));
+}
+
+h2 {
+	font-size: var(--fs-700);
+	font-weight: var(--fw-500);
+	line-height: 1.2;
+	color: hsl(var(--clr-primary-white));
+	text-transform: uppercase;
+	letter-spacing: 2px;
+}
+
+h3 {
+	font-size: var(--fs-500);
+	font-weight: var(--fw-500);
+	line-height: 1.3;
+	text-transform: uppercase;
+	letter-spacing: 5px;
+	color: hsl(var(--clr-secondary-grey-700));
+}
+
+p {
+	font-size: var(--fs-400);
+	font-weight: var(--fw-400);
+	line-height: 1.625;
+	color: hsl(var(--clr-secondary-grey-700));
 }

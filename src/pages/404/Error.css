@@ -1,0 +1,10 @@
+.error {
+	place-items: center;
+	text-align: center;
+	margin-bottom: 24rem;
+}
+
+.error__msg {
+	color: hsl(var(--clr-primary-black));
+	margin-inline: auto;
+}

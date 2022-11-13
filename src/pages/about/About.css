@@ -1,0 +1,202 @@
+/* ------------------------- General CSS -------------------------- */
+:where(.primary-banner, .accent-banner, .secondary-banner) {
+	--gap: 0;
+	border-radius: 0.9375rem;
+	overflow: hidden;
+}
+
+:where(.primary-banner, .accent-banner) {
+	grid-template-columns: 1fr 0.73fr;
+}
+
+:where(.primary-banner, .secondary-banner) {
+	margin-bottom: 10rem;
+}
+
+:where(.accent-banner__intro, .secondary-banner__intro) > h2 {
+	text-transform: none;
+}
+
+:where(.accent-banner__intro, .secondary-banner__intro) {
+	padding: 9.625rem 6rem;
+}
+
+:where(.accent-banner__intro, .secondary-banner__intro) :is(h2, p:first-of-type) {
+	margin-bottom: 1.5rem;
+}
+
+/* ------------------------- Primary Banner CSS -------------------------- */
+.primary-banner__intro {
+	background: url('../../assets/about/desktop/bg-pattern-hero-about-desktop.svg') no-repeat
+			center center/cover,
+		hsl(var(--clr-primary-peach));
+	padding: 8.4375rem 5.125rem 8.4375rem 5.9375rem;
+}
+
+.primary-banner__intro > h1 {
+	margin-bottom: 2rem;
+}
+
+.primary-banner__img {
+	background: url('../../assets/about/desktop/image-about-hero.jpg') no-repeat center
+		center/cover;
+}
+
+/* ------------------------- Secondary Banner CSS -------------------------- */
+.secondary-banner {
+	grid-template-columns: 0.73fr 1fr;
+}
+
+.secondary-banner__img {
+	background: url('../../assets/about/desktop/image-world-class-talent.jpg') no-repeat center
+		center/cover;
+}
+
+.secondary-banner__intro {
+	background: url('../../assets/shared/desktop/bg-pattern-two-circles.svg') no-repeat left -10rem
+			bottom/auto,
+		#fdf3f0;
+}
+
+/* ------------------------- Location CSS -------------------------- */
+.locations {
+	--gap: 1.875rem;
+	grid-template-columns: repeat(3, 1fr);
+	margin-bottom: 10rem;
+}
+
+.location {
+	--gap: 3rem;
+	flex-direction: column;
+	align-items: center;
+}
+
+.location__img {
+	position: relative;
+}
+
+.location__img::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background-image: url('../../assets/shared/desktop/bg-pattern-small-circle.svg');
+}
+
+.location:first-of-type > .location__img::before {
+	transform: rotate(90deg);
+}
+
+.location:last-of-type > .location__img::before {
+	transform: rotate(-90deg);
+}
+
+.location > :where(div:nth-child(2)) {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+}
+/* ------------------------- Accent Banner CSS -------------------------- */
+.accent-banner {
+	margin-bottom: 23.75rem;
+}
+
+.accent-banner__intro {
+	background: url('../../assets/shared/desktop/bg-pattern-two-circles.svg') no-repeat left
+			bottom/auto,
+		#fdf3f0;
+}
+
+.accent-banner__img {
+	background: url('../../assets/about/desktop/image-real-deal.jpg') no-repeat center
+		center/cover;
+}
+
+/* --------------------------- Media Queries ------------------------ */
+/* Tablet */
+@media (max-width: 60em) {
+	:is(.primary-banner, .secondary-banner, .accent-banner) {
+		grid-template-columns: 1fr;
+		grid-template-rows: 320px;
+	}
+
+	:is(.primary-banner__intro, .secondary-banner__intro, .accent-banner__intro) {
+		padding: 4rem 3.625rem;
+		text-align: center;
+	}
+
+	:is(.primary-banner, .secondary-banner, .locations) {
+		margin-bottom: 7.5rem;
+	}
+
+	.locations {
+		grid-template-columns: 1fr;
+	}
+
+	.accent-banner {
+		margin-bottom: 24rem;
+	}
+
+	.primary-banner__intro {
+		order: 2;
+	}
+
+	.accent-banner__intro {
+		order: 2;
+	}
+
+	.primary-banner__img {
+		background: url('../../assets/about/tablet/image-about-hero.jpg') no-repeat center
+			center/cover;
+	}
+
+	.secondary-banner__img {
+		background: url('../../assets/about/tablet/image-world-class-talent.jpg') no-repeat center
+			center/cover;
+	}
+
+	.accent-banner__img {
+		background: url('../../assets/about/tablet/image-real-deal.jpg') no-repeat center
+			center/cover;
+	}
+}
+
+/* Mobile */
+@media (max-width: 45em) {
+	:where(.primary-banner, .accent-banner, .secondary-banner) {
+		border-radius: 0;
+	}
+
+	:is(.primary-banner__intro, .secondary-banner__intro, .accent-banner__intro) {
+		padding: 5rem 1.5rem;
+	}
+
+	.primary-banner {
+		margin-bottom: 0;
+	}
+
+	.primary-banner__intro > h1 {
+		margin-bottom: 1.5rem;
+	}
+
+	.primary-banner__img {
+		background: url('../../assets/about/mobile/image-about-hero.jpg') no-repeat center
+			center/cover;
+	}
+
+	.secondary-banner__img {
+		background: url('../../assets/about/mobile/image-world-class-talent.jpg') no-repeat center
+			center/cover;
+	}
+
+	.accent-banner__img {
+		background: url('../../assets/about/mobile/image-real-deal.jpg') no-repeat center
+			center/cover;
+	}
+
+	.accent-banner__intro {
+		background: url('../../assets/shared/desktop/bg-pattern-two-circles.svg') no-repeat left
+				top/auto,
+			#fdf3f0;
+	}
+}

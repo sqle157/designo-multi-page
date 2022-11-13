@@ -1,0 +1,147 @@
+/* ------------------ Call to action CSS ---------------- */
+.action {
+	--gap: 0;
+	padding: 4.5rem 6rem;
+	align-items: center;
+	justify-content: space-between;
+	background: url('../../assets/shared/desktop/bg-pattern-call-to-action.svg') no-repeat right,
+		hsl(var(--clr-primary-peach));
+	border-radius: 0.9375rem;
+	margin-block: 0;
+	position: absolute;
+	top: -14rem;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.action > * {
+	flex: 1;
+}
+
+.action :where(.btn) {
+	margin-left: auto;
+}
+
+.action__heading {
+	max-width: 15ch;
+	line-height: 1;
+	text-transform: none;
+	margin-bottom: 1rem;
+}
+
+/* --------------------------- Media Queries ------------------------ */
+/* Tablet */
+@media (max-width: 60em) {
+	.action {
+		--gap: 2rem;
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+		padding: 3.5625rem;
+		top: -17rem;
+	}
+
+	.action > div:first-child {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+/* Mobile */
+@media (max-width: 45em) {
+	.action {
+		padding: 4rem 1.5rem;
+	}
+}
+
+/* ------------------ Footer CSS ---------------- */
+.footer {
+	width: 100%;
+	background-color: hsl(var(--clr-primary-black));
+	padding-block: 9rem 4.5rem;
+	position: relative;
+}
+
+.footer :where(.primary-header) {
+	margin-block: 0;
+	height: 27px;
+	margin-bottom: 2.5rem;
+}
+
+.footer :where(.secondary-container.contact) {
+	padding-top: 2rem;
+	margin-block: 0;
+}
+
+.footer :where(.navbar__link) {
+	color: hsl(var(--clr-secondary-grey-300));
+}
+
+.contact {
+	--gap: 1.875rem;
+	grid-template-columns: repeat(3, 1fr);
+	border-top: 1px solid hsl(var(--clr-secondary-grey-700));
+}
+
+.contact :where(p) {
+	color: hsl(var(--clr-secondary-grey-300));
+}
+
+.contact :where(span) {
+	font-weight: 700;
+}
+
+.contact__social {
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+.contact__social > i {
+	cursor: pointer;
+}
+
+.contact__social > i:is(:hover, :focus) :where(path) {
+	fill: hsl(var(--clr-secondary-peach-300));
+}
+
+/* --------------------------- Media Queries ------------------------ */
+/* Tablet */
+@media (max-width: 60em) {
+	.footer {
+		padding-block: 10rem 5rem;
+	}
+}
+
+/* Mobile */
+@media (max-width: 45em) {
+	.footer {
+		padding-block: 10rem 4rem;
+	}
+
+	.footer :where(.primary-header, .navbar) {
+		flex-direction: column;
+	}
+
+	.footer .primary-header {
+		--gap: 2.5rem;
+	}
+
+	#footer-nav .navbar {
+		--gap: 2rem;
+		padding: 0;
+		margin-top: 2rem;
+	}
+
+	.contact {
+		--gap: 2.5rem;
+		padding-top: 13.625rem;
+		grid-template-columns: 1fr;
+		place-items: center;
+		text-align: center;
+	}
+
+	.contact__social {
+		--gap: 1rem;
+	}
+}

@@ -1,0 +1,15 @@
+.other-categories {
+	--gap: 1.875rem;
+	grid-template-columns: 1fr 1fr;
+	margin-bottom: 23.75rem;
+}
+
+/* --------------------------- Media Queries ------------------------ */
+/* Tablet */
+@media (max-width: 60em) {
+	.other-categories {
+		--gap: 1.5rem;
+		grid-template-columns: 1fr;
+		margin-bottom: 24rem;
+	}
+}

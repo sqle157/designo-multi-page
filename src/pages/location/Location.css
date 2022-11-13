@@ -1,0 +1,140 @@
+/* ---------------------- General CSS -------------------- */
+:where(.location-info, .location-map) {
+	border-radius: 0.9375rem;
+}
+
+.location-info > h2 {
+	text-transform: none;
+	margin-bottom: 1.5rem;
+}
+
+.location-info p {
+	color: hsl(var(--clr-secondary-grey-700));
+}
+
+.location-info span {
+	font-weight: 700;
+}
+
+/* ---------------------- Location CSS -------------------- */
+.locations-grid {
+	--gap: 2rem 1.875rem;
+	grid-auto-columns: 1fr;
+	grid-template-areas:
+		'can-info can-info can-map'
+		'aus-map aus-info aus-info'
+		'eng-info eng-info eng-map';
+	margin-bottom: 23.75rem;
+}
+
+.location-info {
+	padding: 5.5rem 5.9375rem;
+	background: url('../../assets/shared/desktop/bg-pattern-two-circles.svg') no-repeat left
+			bottom/contain,
+		#fdf3f0;
+}
+
+.location-info > .grid {
+	--gap: 1.875rem;
+	grid-template-columns: 1fr 1fr;
+}
+
+.can-map {
+	background: url('../../assets/locations/desktop/image-map-canada.png') no-repeat center
+		center/cover;
+}
+
+.aus-map {
+	background: url('../../assets/locations/desktop/image-map-australia.png') no-repeat center
+		center/cover;
+}
+
+.eng-map {
+	background: url('../../assets/locations/desktop/image-map-united-kingdom.png') no-repeat
+		center center/cover;
+}
+
+/* Grid-areas */
+.can-info {
+	grid-area: can-info;
+}
+
+.can-map {
+	grid-area: can-map;
+}
+
+.aus-info {
+	grid-area: aus-info;
+}
+
+.aus-map {
+	grid-area: aus-map;
+}
+
+.eng-info {
+	grid-area: eng-info;
+}
+
+.eng-map {
+	grid-area: eng-map;
+}
+
+/* --------------------------- Media Queries ------------------------ */
+/* Tablet */
+@media (max-width: 60em) {
+	.locations-grid {
+		grid-auto-rows: 1fr;
+		grid-template-areas:
+			'can-map'
+			'can-info'
+			'aus-map'
+			'aus-info'
+			'eng-map'
+			'eng-info ';
+
+		margin-bottom: 24rem;
+	}
+
+	.location-info {
+		padding: 5.5rem 4.6875rem;
+		margin-bottom: 6rem;
+	}
+
+	.can-map {
+		background: url('../../assets/locations/tablet/image-map-canada.png') no-repeat center
+			center/cover;
+	}
+
+	.aus-map {
+		background: url('../../assets/locations/tablet/image-map-australia.png') no-repeat center
+			center/cover;
+	}
+
+	.eng-map {
+		background: url('../../assets/locations/tablet/image-map-uk.png') no-repeat center
+			center/cover;
+	}
+}
+
+/* Mobile */
+@media (max-width: 45em) {
+	.locations-grid {
+		--gap: 0;
+		margin-bottom: 19.375rem;
+	}
+
+	:where(.location-info, .location-map) {
+		border-radius: 0;
+	}
+
+	.location-info {
+		padding: 5rem 1.5rem;
+		margin-bottom: 2.5rem;
+		text-align: center;
+	}
+
+	.location-info > .grid {
+		grid-template-columns: 1fr;
+		place-items: center;
+	}
+}

@@ -1,0 +1,38 @@
+.banner {
+	padding: 4rem 11.875rem;
+	text-align: center;
+	border-radius: 0.9375rem;
+	margin-bottom: 10rem;
+}
+
+.banner > h1 {
+	margin-bottom: 1.5rem;
+}
+
+.banner > p {
+	max-width: 40ch;
+	margin-inline: auto;
+}
+
+/* --------------------------- Media Queries ------------------------ */
+/* Tablet */
+@media (max-width: 60em) {
+	.banner {
+		padding: 4rem 0;
+		margin-bottom: 7.5rem;
+	}
+}
+
+@media (max-width: 45em) {
+	.banner {
+		padding: 6.5625rem 1.5rem;
+		border-radius: 0;
+		margin-bottom: 6rem;
+		background-position: left -30rem top -18.5rem !important;
+	}
+
+	.banner > p {
+		font-size: var(--fs-300);
+		line-height: 25px;
+	}
+}
