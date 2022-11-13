@@ -1,88 +1,105 @@
 import { useState } from 'react';
+import { useValidateForm } from '../../hooks/useValidateForm';
 import { toast } from 'react-toastify';
 import errorIcon from '../../assets/contact/desktop/icon-error.svg';
 
 function FormContainer() {
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
-	const [phone, setPhone] = useState('');
-	const [message, setMessage] = useState('');
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		phone: '',
+		message: '',
+		invalid: {
+			name: '',
+			email: '',
+			phone: '',
+			message: '',
+		},
+	});
 
-	// Set 4 local states to handle error for each input field
-	const [nameErrorMsg, setNameErrorMsg] = useState('');
-	const [emailErrorMsg, setEmailErrorMsg] = useState('');
-	const [phoneErrorMsg, setPhoneErrorMsg] = useState('');
-	const [textErrorMsg, setTextErrorMsg] = useState('');
+	const { validateEmail, validateForm, validatePhone } = useValidateForm();
 
-	// Validate all the input fields
-	const validateFields = () => {
-		// Validate name & message fields
-		if (name === '') setNameErrorMsg("Can't be empty");
-		if (message === '') setTextErrorMsg("Can't be empty");
-
-		// Validate Email Field
-		if (email === '') {
-			setEmailErrorMsg("Can't be empty");
-		} else {
-			validateEmail();
-		}
-
-		// Validate Phone Field
-		if (phone !== '') {
-			validatePhone();
-		}
-	};
-
-	// Validate email format
-	const validateEmail = () => {
-		// Handle simple anything@anything.com situation only
-		const emailRegExp = /\S+@\S+\.\S+/;
-
-		if (email !== '' && !email.match(emailRegExp)) {
-			setEmailErrorMsg('Invalid Email Address');
-		}
-	};
-
-	// Validate phone number format
-	const validatePhone = () => {
-		const phoneRegExp = /^\d{10}$/;
-
-		if (phone !== '' && !phone.match(phoneRegExp)) {
-			setPhoneErrorMsg('Invalid Phone Number');
-		}
-	};
-
-	// Reset all error message
-	const resetErrorMsg = () => {
-		setNameErrorMsg('');
-		setTextErrorMsg('');
-		setEmailErrorMsg('');
-		setPhoneErrorMsg('');
-	};
+	const { name, email, phone, message, invalid } = formData;
 
 	// Reset all fields
 	const resetFields = () => {
-		setName('');
-		setEmail('');
-		setMessage('');
-		setPhone('');
+		setFormData({
+			name: '',
+			phone: '',
+			email: '',
+			message: '',
+			invalid: {
+				name: '',
+				email: '',
+				phone: '',
+				message: '',
+			},
+		});
+	};
+
+	// Handle onChange & validation
+	const handleChange = (e) => {
+		const { id, value } = e.target;
+		let invalid = formData.invalid;
+
+		switch (id) {
+			case 'name':
+				invalid.name = value.length === 0 ? "Can't be empty" : '';
+				break;
+			case 'message':
+				invalid.message = value.length === 0 ? "Can't be empty" : '';
+				break;
+			case 'email':
+				if (value === '') {
+					invalid.email = "Can't be empty";
+				} else {
+					invalid.email = validateEmail(value) ? '' : 'Invalid email';
+				}
+				break;
+			case 'phone':
+				if (value === '') {
+					invalid.phone = '';
+				} else {
+					invalid.phone = validatePhone(value) ? '' : 'Invalid phone number';
+				}
+				break;
+			default:
+				break;
+		}
+
+		setFormData((prevData) => ({
+			...prevData,
+			[id]: value,
+			invalid,
+		}));
 	};
 
 	// Handle Form Submit
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		resetErrorMsg();
-		validateFields();
-		if (
-			nameErrorMsg !== '' &&
-			textErrorMsg !== '' &&
-			phoneErrorMsg !== '' &&
-			emailErrorMsg !== ''
-		) {
+
+		const isSubmitable = name !== '' && message !== '' && email !== '';
+
+		console.log(isSubmitable);
+
+		if (!isSubmitable) {
+			setFormData((prevData) => ({
+				...prevData,
+				invalid: {
+					...prevData.invalid,
+					name: name === '' ? "Can't be empty" : '',
+					message: message === '' ? "Can't be empty" : '',
+					email: email === '' ? "Can't be empty" : '',
+				},
+			}));
+			toast.error('Invalid input - please try again');
+		} else if (isSubmitable && validateForm(formData.invalid)) {
 			toast.success(
 				'Your message has been received! We will contact you as soon as possible'
 			);
 			resetFields();
+		} else {
+			toast.error('Invalid input - please try again');
 		}
 	};
 
@@ -109,13 +126,13 @@ function FormContainer() {
 						type='text'
 						placeholder='Name'
 						value={name}
-						onChange={(e) => setName(e.target.value)}
+						onChange={handleChange}
 						id='name'
 					/>
-					{nameErrorMsg !== '' && (
+					{name === '' && invalid.message !== '' && (
 						<div className='error-block flex'>
 							<p>
-								<em>{nameErrorMsg}</em>
+								<em>{invalid.name}</em>
 							</p>
 							<i>
 								<img src={errorIcon} alt='' />
@@ -129,13 +146,14 @@ function FormContainer() {
 						type='email'
 						placeholder='Email Address'
 						value={email}
-						onChange={(e) => setEmail(e.target.value)}
+						onChange={handleChange}
 						id='email'
 					/>
-					{emailErrorMsg !== '' && (
+					{((email === '' && invalid.email === "Can't be empty") ||
+						(email !== '' && invalid.email === 'Invalid email')) && (
 						<div className='error-block flex'>
 							<p>
-								<em>{emailErrorMsg}</em>
+								<em>{invalid.email}</em>
 							</p>
 							<i>
 								<img src={errorIcon} alt='' />
@@ -149,13 +167,13 @@ function FormContainer() {
 						type='number'
 						placeholder='Phone'
 						value={phone}
-						onChange={(e) => setPhone(e.target.value)}
+						onChange={handleChange}
 						id='phone'
 					/>
-					{phoneErrorMsg !== '' && (
+					{invalid.phone !== '' && (
 						<div className='error-block flex'>
 							<p>
-								<em>{phoneErrorMsg}</em>
+								<em>{invalid.phone}</em>
 							</p>
 							<i>
 								<img src={errorIcon} alt='' />
@@ -168,13 +186,13 @@ function FormContainer() {
 					<textarea
 						placeholder='Your Message'
 						value={message}
-						onChange={(e) => setMessage(e.target.value)}
+						onChange={handleChange}
 						id='message'
 					/>
-					{textErrorMsg !== '' && (
+					{message === '' && invalid.message !== '' && (
 						<div className='error-block flex'>
 							<p>
-								<em>{textErrorMsg}</em>
+								<em>{invalid.message}</em>
 							</p>
 							<i>
 								<img src={errorIcon} alt='' />
