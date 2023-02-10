@@ -45,9 +45,11 @@ function Navbar({ logo, id }) {
 					</li>
 				</ul>
 			</nav>
-			<div
+			<button
 				className={`menu menu-${openMenu ? 'close' : 'open'}`}
-				onClick={() => setOpenMenu((prevState) => !prevState)}></div>
+				onClick={() => setOpenMenu((prevState) => !prevState)}
+				type='button'
+				aria-label='mobile menu'></button>
 		</header>
 	);
 }
