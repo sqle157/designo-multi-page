@@ -1,3 +1,5 @@
+![Design preview for the Designo agency website coding challenge](./preview.jpg)
+
 ## Welcome! 👋
 
 A cool multipage website built with React! Explore different pages, navigate seamlessly, and enjoy an interactive browsing experience.
